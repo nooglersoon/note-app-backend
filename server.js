@@ -1,1 +1,1 @@
-console.log("Successfully connected")
+console.log('Successfully connected');
