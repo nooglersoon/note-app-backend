@@ -26,7 +26,6 @@ const addNoteHandler = (request, h) => {
       },
     });
     response.code(201);
-    response.header('Access-Control-Allow-Origin', '*');
     return response;
   }
 
@@ -38,4 +37,16 @@ const addNoteHandler = (request, h) => {
   return response;
 };
 
-module.exports = { addNoteHandler };
+const getNotesHandler = (request, h) => {
+  const response = h.response({
+    status: 'success',
+    message: 'Daftar semua catatan',
+    data: {
+      notes: notes
+    },
+  });
+  response.code(200);
+  return response;
+}
+
+module.exports = { addNoteHandler, getNotesHandler };
