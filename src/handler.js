@@ -42,11 +42,11 @@ const getNotesHandler = (request, h) => {
     status: 'success',
     message: 'Daftar semua catatan',
     data: {
-      notes: notes
+      notes,
     },
   });
   response.code(200);
   return response;
-}
+};
 
 module.exports = { addNoteHandler, getNotesHandler };
