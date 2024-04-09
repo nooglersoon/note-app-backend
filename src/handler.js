@@ -56,7 +56,7 @@ const getNoteByIdHandler = (request, h) => {
   if (note) {
     const response = h.response({
       status: 'success',
-      message: `Catatan dengan id ${id}`,
+      message: `Berhasil mendapatkan catatan dengan id ${id}`,
       data: {
         note,
       },
@@ -74,4 +74,40 @@ const getNoteByIdHandler = (request, h) => {
   return response;
 };
 
-module.exports = { addNoteHandler, getNotesHandler, getNoteByIdHandler };
+const updateNoteByIdHandler = (request, h) => {
+
+  const { id } = request.params;
+  const { title, body, tags } = request.payload;
+
+  const givenIndex = notes.findIndex((note) => note.id === id);
+
+  if (givenIndex !== -1) {
+
+    const updatedAt = new Date().toISOString();
+
+    notes[givenIndex] = {
+      ...notes[givenIndex],
+      title,
+      tags,
+      body,
+      updatedAt,
+    };
+
+    const response = h.response({
+      status: 'success',
+      message: 'Catatan berhasil diperbarui',
+    });
+    response.code(200);
+    return response;
+  }
+
+  const response = h.response({
+    status: 'fail',
+    message: 'Tidak terdapat catatan dengan id tersebut',
+  });
+
+  response.code(404);
+  return response;
+}
+
+module.exports = { addNoteHandler, getNotesHandler, getNoteByIdHandler, updateNoteByIdHandler };
