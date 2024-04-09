@@ -75,14 +75,12 @@ const getNoteByIdHandler = (request, h) => {
 };
 
 const updateNoteByIdHandler = (request, h) => {
-
   const { id } = request.params;
   const { title, body, tags } = request.payload;
 
   const givenIndex = notes.findIndex((note) => note.id === id);
 
   if (givenIndex !== -1) {
-
     const updatedAt = new Date().toISOString();
 
     notes[givenIndex] = {
@@ -108,6 +106,11 @@ const updateNoteByIdHandler = (request, h) => {
 
   response.code(404);
   return response;
-}
+};
 
-module.exports = { addNoteHandler, getNotesHandler, getNoteByIdHandler, updateNoteByIdHandler };
+module.exports = {
+  addNoteHandler,
+  getNotesHandler,
+  getNoteByIdHandler,
+  updateNoteByIdHandler,
+};
