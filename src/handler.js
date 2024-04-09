@@ -1,5 +1,5 @@
-const notes = require('./notes')
 const { nanoid } = require('nanoid');
+const notes = require('./notes');
 
 const addNoteHandler = (request, h) => {
   const { title, tags, body } = request.payload;
@@ -36,7 +36,6 @@ const addNoteHandler = (request, h) => {
   });
   response.code(500);
   return response;
-
 };
 
 module.exports = { addNoteHandler };
