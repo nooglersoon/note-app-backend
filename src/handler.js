@@ -58,7 +58,7 @@ const getNoteByIdHandler = (request, h) => {
       status: 'success',
       message: `Catatan dengan id ${id}`,
       data: {
-        note
+        note,
       },
     });
     response.code(200);
@@ -72,7 +72,6 @@ const getNoteByIdHandler = (request, h) => {
 
   response.code(404);
   return response;
-
-}
+};
 
 module.exports = { addNoteHandler, getNotesHandler, getNoteByIdHandler };
